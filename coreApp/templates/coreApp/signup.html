@@ -1,0 +1,26 @@
+{% extends 'coreApp/base.html'%} {% block content %}
+<div class="container">
+    <div class="column is-6 is-offset-3">
+        <h1 class="title">Sign Up Here</h1>
+        <form action="." method="post">
+            {% csrf_token %} {{ form.as_p}}
+            <div class="field">
+                <label for="">Account Type</label>
+                <div class="control">
+                    <div class="select">
+                        <select name="account_type" id="">
+                            <option value="jobseeker" selected>Job Seeker</option>
+                            <option value="employer">Employer</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-success">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'coreApp/base.html'%} {% block content %}
+<h1 class="title">{{ job.title }}</h1>
+<p class="is-size-4">{{ job.show_description}}</p>
+<p class="is-size-4">{{ job.long_description}}</p>
+{% if userprofile.is_employer %}
+<h1>Employer</h1>
+
+<a class="button is-success" href="{% url 'edit_job' job.id %}">Edit This Job</a> {% else %}
+
+<a class="button is-success" href="{% url 'apply_for_job' job.id %}">Apply for the Job </a> {% endif %} {% endblock %}
