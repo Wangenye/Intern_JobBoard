@@ -1,7 +1,16 @@
 {% extends 'coreApp/base.html' %} {% block content %}
-<h1 class="title">Dashboard</h1>
+<!-- <h1 class="title">Dashboard</h1> -->
 {% if userprofile.is_employer %}
-<h1 class="title"> IS eMPLOYER</h1>
+<p class="buttons">
+    <button class="button is-link is-outlined" disabled>
+      <span class="icon">
+        <i class="fab fa-briefcase"></i>
+      </span>
+      <span>Logged in as Employer</span>
+    </button>
+</p>
+<h1 class="title"> Logged in as Employer</h1>
+
 <h2 class="title">Jobs</h2>
 <a class="button is-success" href="{%url 'new' %}">Add Job</a> {% for job in request.user.jobs.all %}
 <div class="job">
@@ -14,7 +23,7 @@
 <p>No Jobs Posted Yet</p>
 {% endfor %} {% else %}
 
-<h2 class="title">Is JobSeeker</h2>
+<h2 class="title">Logged in As Job seeker </h2>
 
 <h2 class="subtitle"> Job Applications</h2>
 {%for application in request.user.applications.all %}

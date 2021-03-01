@@ -1,17 +1,35 @@
 {% extends 'coreApp/base.html'%} {% block content %}
-<h2 class="subtitle has-text-centered">
+<div class="p-6 m-6">
+    <div class="field ">
+        <!-- <label class="label">Username</label> -->
+        <div class="control has-icons-left has-icons-right">
+            <input class="input is-success is-loading is-normal" type="text" placeholder="Text input To search">
+            <button class="m-1 button is-link is-outlined">Search</button>
+            <span class="icon is-small is-left">
+            <i class="fas fa-search "></i>
+          </span>
+            <!-- <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span> -->
+        </div>
+        <!-- <p class="help is-success">This username is available</p> -->
+    </div>
+</div>
+<h2 class=" subtitle has-text-centered title">
     Newest Jobs
 
 </h2>
-<div class="columns">
+<div class="columns is-multiline is-desktop">
+
     {% for job in jobs %}
-    <div class="column is-4">
+    <!-- <div class="column "> -->
+    <div class="column is-4 is-mobile">
         <div class="card">
             <div class="card-content">
                 <div class="media">
                     <div class="media-content">
                         <p class="title is-4">
-                            {{ job.title }}
+                            {{ job.title |truncatechars:25 }}
                         </p>
                         <p class="title is-6">
                             {{ job.created_at }}
@@ -19,15 +37,17 @@
                     </div>
                 </div>
                 <div class="content">
-                    {{ job.show_description }}
+                    {{ job.show_description|truncatechars:150 }}
 
                     <hr>
-                    <a href="{% url 'job_details' job.id %}">Vie More</a>
+                    <a href="{% url 'job_details' job.id %}" class="button is-link is-outlined">Read More</a>
                 </div>
             </div>
 
         </div>
-
     </div>
+
+
     {% endfor %}
+    <!-- </div> -->
 </div> {% endblock %}

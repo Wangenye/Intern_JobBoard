@@ -3,22 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple webapp to connect college students who are seeking to get attachment/internship.">
     <title>Intern JobBoard</title>
+    <!-- fonawesome css  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <!-- Bulmar css  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 </head>
 
-<body>
-    <nav class="navbar is-light">
+<body style="height:100%">
+    <nav p-1 class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a href="{% url 'frontpage' %}" class="navbar-item"> <strong>Coding Jobs</strong> </a>
+            <a href="{% url 'frontpage' %}" class="navbar-item"> <strong>Intern Jobs</strong> </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
 
         <div class="navbar-menu">
-            <div class="navbar-end">
-                <a class="navbar-item" href="{% url 'search' %}">Search</a> {% if request.user.is_authenticated %}
-                <a class="navbar-item" href="{% url 'dashboard' %}">Dashboard</a>
+            <div class=" navbar-end">
+                <a class=" navbar-item is-light is-focused" href="{% url 'search' %}">Search</a>
+                <a class="navbar-item is-light" href="{% url 'search' %}">Jobs</a>
+                <a class="navbar-item is-light" href="{% url 'search' %}">About</a>
+                <a class="navbar-item is-light" href="{% url 'search' %}">COntact Us</a> {% if request.user.is_authenticated %}
+                <a class="mx-1 navbar-item" href="{% url 'dashboard' %}">Dashboard</a>
 
                 <a class="navbar-item" href="{% url 'notifications' %}">Notifications({{notifications.count}})</a> {% endif %}
                 <div class="navbar-item">
@@ -34,17 +47,52 @@
         </div>
     </nav>
 
+
     <!-- Main Content  -->
     <section class="section">
         {% block content %} {% endblock %}
     </section>
+
     <!-- End main Content -->
 
+
+
     <!-- Scripts  -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+
+            // Check for click events on the navbar burger icon
+            $(".navbar-burger").click(function() {
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                $(".navbar-burger").toggleClass("is-active");
+                $(".navbar-menu").toggleClass("is-active");
+
+            });
+        });
+    </script>
     <script src="https://unpkg.com/vue@next">
     </script>
 
     {% block scripts%}{%endblock%}
+    <div style="margin-bottom:100px;"></div>
+    <!-- <------------------FOoter section--________---------------->
+    <footer class="footer " style='background-color:#1f2330; color:#FAFAFA; line-height:50px; '>
+        <div class="content has-text-centered">
+            <p font sizes: $size-1: 3rem>
+                Copyright &copy; 2020 . By Bingo Technologies.
+            </p>
+            <!-- <p>
+                    <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+                    <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+                </p> -->
+        </div>
+    </footer>
+
+
+    <!-- End FOoter section -->
 
 
 </body>
