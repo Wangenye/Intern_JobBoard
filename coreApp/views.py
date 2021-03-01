@@ -8,7 +8,7 @@ from UserProfileApp.models import UserProfile
 
 
 def FrontPage(request):
-    jobs = Job.objects.filter(status=Job.ARCHIVED).order_by('-created_at')
+    jobs = Job.objects.filter(status=Job.ACTIVE).order_by('-created_at')
     return render(request,'coreApp/froontpage.html',{'jobs':jobs})
 
 def SignUp(request):
