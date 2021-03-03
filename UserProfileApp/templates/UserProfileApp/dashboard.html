@@ -1,36 +1,50 @@
 {% extends 'coreApp/base.html' %} {% block content %}
 <!-- <h1 class="title">Dashboard</h1> -->
 {% if userprofile.is_employer %}
-<p class="buttons">
-    <button class="button is-link is-outlined" disabled>
+<p class=" buttons m-3 is-mobile">
+    <button class=" button is-link is-outlined" disabled>
       <span class="icon">
         <i class="fab fa-briefcase"></i>
       </span>
       <span>Logged in as Employer</span>
     </button>
 </p>
-<h1 class="title"> Logged in as Employer</h1>
+<!-- <h1 class="title"> Logged in as Employer</h1> -->
+<div class="is-5 column">
+    <div class="content ">
+        <div class="card-header title">
+            Jobs Added
+            <a class="button is-link is-outlined" href="{%url 'new' %}">Add New Job</a>
+        </div>
 
-<h2 class="title">Jobs</h2>
-<a class="button is-success" href="{%url 'new' %}">Add Job</a> {% for job in request.user.jobs.all %}
-<div class="job">
-    <a href="{% url 'view_dashboard_job' job.id %}"> 
-        {{ job.title }}--{{ job.get_status_display}}
-    </a>
+        <div class="content">
+            {% for job in request.user.jobs.all %}
+            <ul style="list-style-type: none;">
+                <li>
 
+                    <a href="{% url 'view_dashboard_job' job.id %}"> 
+      {{ job.title }}--{{ job.get_status_display}}
+  </a>
+                </li>
+            </ul>
+            {% empty %}
+            <p>No Jobs Posted Yet</p>
+            {% endfor %} {% else %}
+
+            <h2 class="title">Logged in As Job seeker </h2>
+
+            <h2 class="subtitle"> Job Applications</h2>
+            {%for application in request.user.applications.all %}
+            <div class="application">
+
+                <a href="{% url 'view_application' application.id %}">  {{application.job.title}}</a>
+            </div>
+            {% empty %}
+            <h2>Not Yet</h2>
+            {% endfor%} {% endif %}
+        </div>
+
+
+    </div>
 </div>
-{% empty %}
-<p>No Jobs Posted Yet</p>
-{% endfor %} {% else %}
-
-<h2 class="title">Logged in As Job seeker </h2>
-
-<h2 class="subtitle"> Job Applications</h2>
-{%for application in request.user.applications.all %}
-<div class="application">
-
-    <a href="{% url 'view_application' application.id %}">  {{application.job.title}}</a>
-</div>
-{% empty %}
-<h2>Not Yet</h2>
-{% endfor%} {% endif %} {% endblock %}
+{% endblock %}

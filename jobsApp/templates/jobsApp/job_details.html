@@ -1,5 +1,32 @@
 {% extends 'coreApp/base.html'%} {% block content %}
-<h1 class="title">{{ job.title }}</h1>
+
+<div class="column ">
+    <div class="card m-1 p-1">
+        <header class="card-header">
+            <p class="title has-text-centered card-header-title">
+                {{ job.title }}
+            </p>
+        </header>
+        <div class="card-content">
+            <p class="content">
+                {{ job.show_description }}
+            </p>
+            <p class="content">
+                {{ job.long_description }}
+            </p>
+        </div>
+        <div class="card-footer">
+            {% if userprofile.is_employer %}
+            <a class="card-footer-item is-success" href="{% url 'edit_job' job.id %}">Edit This Job</a> {% else %}
+            <a class="card-footer-item is-success" href="{% url 'apply_for_job' job.id %}">Apply for the Job </a> {% endif %}
+        </div>
+    </div>
+</div>
+<!-- <div style="margin-bottom:100px"></div> -->
+{% endblock %}
+
+
+<!-- <h1 class="title">{{ job.title }}</h1>
 <p class="is-size-4">{{ job.show_description }}</p>
 <p class="is-size-4">{{ job.long_description}}</p>
 {% if userprofile.is_employer %}
@@ -7,4 +34,4 @@
 
 <a class="button is-success" href="{% url 'edit_job' job.id %}">Edit This Job</a> {% else %}
 
-<a class="button is-success" href="{% url 'apply_for_job' job.id %}">Apply for the Job </a> {% endif %} {% endblock %}
+<a class="button is-success" href="{% url 'apply_for_job' job.id %}">Apply for the Job </a> {% endif %} -->

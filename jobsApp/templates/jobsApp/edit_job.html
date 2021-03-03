@@ -1,6 +1,6 @@
 {% extends 'coreApp/base.html' %} {% block content %}
-<d iv id="edit-job-app">
-    <h1 class="title">Edit Job </h1>
+<d iv id="edit-job-app ">
+    <h1 class="title p-4 is-mobile"> Edit Job </h1>
 
     <form method="post" v-on:submit="validateForm">
         {% csrf_token %} {% if form.errors %} {% for error in form.errors%}
@@ -89,6 +89,7 @@
         </div>
     </form>
     </div>
+    <!-- <div style="margin-bottom:100px"></div> -->
     {% endblock %} {% block scripts%}
     <script>
         const EditJobApp = {

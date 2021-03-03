@@ -27,7 +27,7 @@
 
         <div class="navbar-menu">
             <div class=" navbar-end">
-                <a class=" navbar-item is-light is-focused" href="{% url 'search' %}">Search</a>
+                <a class=" navbar-item is-light is-focused is-outlined" href="{% url 'search' %}" disabled>Search</a>
                 <a class="navbar-item is-light" href="{% url 'search' %}">Jobs</a>
                 <a class="navbar-item is-light" href="{% url 'search' %}">About</a>
                 <a class="navbar-item is-light" href="{% url 'search' %}">COntact Us</a> {% if request.user.is_authenticated %}
@@ -79,7 +79,7 @@
     {% block scripts%}{%endblock%}
     <div style="margin-bottom:100px;"></div>
     <!-- <------------------FOoter section--________---------------->
-    <footer class="footer " style='background-color:#1f2330; color:#FAFAFA; line-height:50px; '>
+    <footer class="footer " style='background-color:#1f2330; color:#FAFAFA; line-height:50px; margin-bottom:0px;'>
         <div class="content has-text-centered">
             <p font sizes: $size-1: 3rem>
                 Copyright &copy; 2020 . By Bingo Technologies.

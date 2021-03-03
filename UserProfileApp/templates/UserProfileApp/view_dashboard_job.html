@@ -1,9 +1,13 @@
 {% extends 'coreApp/base.html' %} {% block content %}
-<h1 class="title">View Job --{{ job.title}} </h1>
+<div class="container p-5">
+    <h1 class="title">View Job --{{ job.title}} </h1>
 
-<a href="{% url 'edit_job' job.id %}" class="button is-success mb-4">Edit Job</a>
+    <a href="{% url 'edit_job' job.id %}" class="button is-success mb-4">Edit Job</a>
 
-<p class="is-size-4">{{job.show_description}}</p>
-{% for application in job.applications.all %}
-<a href="{% url 'view_application' application.id %}">  
-    {{application.created_by.username}} </a> {% endfor%} {% endblock %}
+    <p class="is-size-4">{{job.show_description}}</p>
+    {% for application in job.applications.all %}
+    <a href="{% url 'view_application' application.id %}">  
+    {{application.created_by.username}} </a> {% endfor%}
+</div>
+<div style="margin-bottom:100px"></div>
+{% endblock %}
