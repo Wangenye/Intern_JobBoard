@@ -38,7 +38,7 @@
                     {% if request.user.is_authenticated %}
                     <a href="{% url 'logout'%}" class="button is-danger"> <strong>Log Out</strong></a>
                     {% else %}
-                    <a href="{% url 'signup'%}" class="button is-success"> <strong>Sign Up</strong></a>
+                    <a href="{% url 'signup'%}" class="button is-success mr-2"> <strong>Sign Up</strong></a>
 
                     <a href="{% url 'login'%}" class="button is-light"> <strong>Login</strong></a>
                     {% endif%}

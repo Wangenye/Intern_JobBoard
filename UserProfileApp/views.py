@@ -3,12 +3,23 @@ from django.contrib.auth.decorators import login_required
 from jobsApp.models import Job,Application
 from UserProfileApp.models import ConversationMessage
 from notificationApp.utilities import create_notification
+from .forms import  UserDetailForm
 
 # Create your views here.
 @login_required
 def UserDashboard(request):
+    if request.method =="POST":
+        form = UserDetailForm(request.POST)
+        if form.is_valid():
+            profiledetails =form.save(commit=False)
+            profiledetails.user = request.user
+            profiledetails.save()
+        else:
+            print("error")
+    else:
+        form = UserDetailForm(prefix='form')
     jobs = Job.objects.all()
-    return render(request,'UserProfileApp/dashboard.html',{'userprofile':request.user.userprofile,'jobs':jobs})
+    return render(request,'UserProfileApp/dashboard.html',{'userprofile':request.user.userprofile,'jobs':jobs,'form':form})
 
 @login_required
 def view_application(request,application_id):
