@@ -24,6 +24,7 @@ GENDER_CHOICES=[('Male','Male'),
 class UserDetail(models.Model):
     user = models.ForeignKey(User,related_name='userprofiledetails',on_delete=models.CASCADE,default=None)
     first_name = models.CharField(max_length=255,null=True)
+    jobseeker_image = models.ImageField(upload_to='Jobseeker/Images/',blank=True)
     last_name = models.CharField(max_length=255,null=True)
     title = models.CharField(max_length=255,null=True)
     phone = models.CharField(max_length=14,null=True)
@@ -36,3 +37,23 @@ class UserDetail(models.Model):
     def __str__(self):
 
         return self.first_name
+
+class  CompanyDetail(models.Model):
+    user = models.ForeignKey(User,related_name='companydetails',on_delete=models.CASCADE,default=None)
+    company_name = models.CharField(max_length=255,null=True)
+    company_ceo = models.CharField(max_length=20,null=True)
+    company_about = models.TextField(max_length=500,null=True)
+    company_website= models.CharField(blank=True,max_length=100)
+    company_logo = models.ImageField(upload_to='Employer/company_logos/')
+    company_email = models.EmailField(blank=True)
+    company_tel = models.CharField(blank=True,max_length=20)
+    company_country = CountryField()
+    company_city = models.CharField(max_length=30,blank=True)
+    company_website= models.URLField(blank=True)
+    company_location= models.URLField(blank=True)
+
+    def __str__(self):
+
+        return "Company Name : {} @ {}".format(self.company_name,self.company_city)
+    
+
