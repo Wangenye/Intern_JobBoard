@@ -38,22 +38,52 @@ class UserDetail(models.Model):
 
         return self.first_name
 
-class  CompanyDetail(models.Model):
-    user = models.ForeignKey(User,related_name='companydetails',on_delete=models.CASCADE,default=None)
-    company_name = models.CharField(max_length=255,null=True)
-    company_ceo = models.CharField(max_length=20,null=True)
-    company_about = models.TextField(max_length=500,null=True)
-    company_website= models.CharField(blank=True,max_length=100)
+# class  CompanyDetail(models.Model):
+#     user = models.ForeignKey(User,related_name='employerprofile',on_delete=models.CASCADE,default=None)
+#     company_name = models.CharField(max_length=255,blank=True,null=True)
+#     company_ceo = models.CharField(max_length=20,blank=True,null=True)
+#     company_about = models.TextField(max_length=500,blank=True,null=True)
+#     company_website= models.CharField(blank=True,max_length=100,null=True)
+#     company_logo = models.ImageField(upload_to='Employer/company_logos/')
+#     company_email = models.EmailField(blank=True,null=True)
+#     company_tel = models.CharField(blank=True,max_length=20,null=True)
+#     company_country = CountryField(null=True)
+#     company_city = models.CharField(max_length=30,blank=True,null=True)
+#     company_website= models.URLField(blank=True,null=True)
+#     company_location= models.URLField(blank=True,null=True)
+
+#     def __str__(self):
+
+#         return "Company Name : {} @ {}".format(self.company_name,self.company_city)
+    
+
+class  CompanyProfile(models.Model):
+    user = models.ForeignKey(User,related_name='employerprofile',on_delete=models.CASCADE,default=None)
+    company_name = models.CharField(max_length=255,blank=True,null=True)
+    company_ceo = models.CharField(max_length=20,blank=True,null=True)
+    company_about = models.TextField(max_length=500,blank=True,null=True)
+    company_website= models.CharField(blank=True,max_length=100,null=True)
     company_logo = models.ImageField(upload_to='Employer/company_logos/')
-    company_email = models.EmailField(blank=True)
-    company_tel = models.CharField(blank=True,max_length=20)
-    company_country = CountryField()
-    company_city = models.CharField(max_length=30,blank=True)
-    company_website= models.URLField(blank=True)
-    company_location= models.URLField(blank=True)
+    company_email = models.EmailField(blank=True,null=True)
+    company_tel = models.CharField(blank=True,max_length=20,null=True)
+    company_country = CountryField(null=True)
+    company_city = models.CharField(max_length=30,blank=True,null=True)
+    company_website= models.URLField(blank=True,null=True)
+    company_location= models.URLField(blank=True,null=True)
 
     def __str__(self):
 
         return "Company Name : {} @ {}".format(self.company_name,self.company_city)
-    
+
+class JustFormation(models.Model):
+    post = models.ForeignKey(User,related_name='postform',on_delete=models.CASCADE,default=None)
+    company_name = models.CharField(max_length=255,blank=True,null=True)
+    company_ceo = models.CharField(max_length=20,blank=True,null=True)
+    company_about = models.TextField(max_length=500,blank=True,null=True)
+    company_website= models.CharField(blank=True,max_length=100,null=True)
+    company_logo = models.ImageField(upload_to='Employer/company_logos/')
+
+    def __str__(self):
+
+        return "Company Name : {} @ {}".format(self.company_ceo,self.company_city)
 

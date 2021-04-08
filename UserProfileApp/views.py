@@ -3,49 +3,11 @@ from django.contrib.auth.decorators import login_required
 from jobsApp.models import Job,Application
 from UserProfileApp.models import ConversationMessage
 from notificationApp.utilities import create_notification
-from .forms import  UserDetailForm,CompanyDetailForm
+from .forms import  UserDetailForm,JustFormForm
 
 # Create your views here.
 @login_required
 def UserDashboard(request):
-    
-    if request.method =="POST":
-        company_form = CompanyDetailForm(request.POST)
-        
-        if company_form.is_valid():
-            profiledetails =company_form.save(commit=False)
-            profiledetails.user = request.user
-            profiledetails.save()
-        else:
-            print("Company Form Error")
-    else:
-        company_form = CompanyDetailForm(prefix='company_form')
-    # if request.user.userprofile.is_employer:
-    #     if request.method =="POST":
-    #         company_form = CompanyDetailForm(request.POST)
-    #         if company_form.is_valid():
-    #             profiledetails =company_form.save(commit=False)
-    #             profiledetails.user = request.user
-    #             profiledetails.save()
-    #         else:
-    #             print("error")
-    #     else:
-    #         company_form = CompanyDetailForm(prefix='company_form')
-    # else:
-    #     if request.method == "POST":
-
-    #         jobseeker_form = UserDetailForm(request.post)
-    #         if jobseeker_form.is_valid():
-    #             profiledetails = jobseeker_form.save(commit=False)
-    #             profiledetails.user = request.user
-    #             profiledetails.save()
-    #         else:
-    #             print("error")
-    #     else:
-    #         jobseeker_form = UserDetailForm(prefix='jobseeker_form')
-
-
-
     if request.method =="POST":
         jobseeker_form = UserDetailForm(request.POST)
         if jobseeker_form.is_valid():
@@ -60,7 +22,27 @@ def UserDashboard(request):
 
 
     jobs = Job.objects.all()
-    return render(request,'UserProfileApp/dashboard.html',{'userprofile':request.user.userprofile,'jobs':jobs,'jobseeker_form':jobseeker_form,'company_form':company_form})
+    return render(request,'UserProfileApp/dashboard.html',{'userprofile':request.user.userprofile,'jobs':jobs,'jobseeker_form':jobseeker_form,})
+
+@login_required
+def CompanyProfileUpdater(request):
+
+    if request.method == 'POST':
+        form =  JustFormForm(request.POST)
+        if form.is_valid():
+            companyProfile = form.save(commit=False)
+            companyProfile.post = request.user
+            companyProfile.save()
+
+            return redirect('dashboard')
+        else:
+            print("Error C")
+    else:
+        form =  JustFormForm(prefix='form')
+
+
+    return render(request,'UserProfileApp/company_profile.html',{'userprofile':request.user.userprofile,'form':form})
+
 
 @login_required
 def view_application(request,application_id):

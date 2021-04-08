@@ -1,6 +1,6 @@
 {% extends 'coreApp/base.html' %} {% block content %}
 <!-- <h1 class="title">Dashboard</h1> -->
-{% if userprofile.is_employer %}
+{{ type_user }} {% if userprofile.is_employer %}
 <p class=" buttons m-5 is-mobile">
     <button class=" button is-link is-outlined" disabled>
       <span class="icon">
@@ -22,6 +22,7 @@
             <ul style="list-style-type: none;">
                 <li>
 
+
                     <a href="{% url 'view_dashboard_job' job.id %}"> 
       {{ job.title }}--{{ job.get_status_display}}
   </a>
@@ -40,7 +41,7 @@
                 <a href="{% url 'view_application' application.id %}">  {{application.job.title}}</a>
             </div>
             {% empty %}
-            <h2>Not Yet</h2>
+            <h2>Not Jobs Applications sent !!</h2>
             {% endfor%} {% endif %}
         </div>
 
@@ -49,172 +50,226 @@
 </div>
 <!-- {{form.as_p}} hgjgyugh -->
 {% if userprofile.is_employer %}
-<!-- {{company_profile_form.as_p}} -->
-
-<a role="button" class="button is-primary is-large modal-button md-button" data-target="modal" aria-haspopup="true">
+<!-- <a href="{% url 'company_profile' %}" class="button is-primary is-large">
     Launch  Profile Form
-</a>
-<div class="modal" id="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title"> Details Form</p>
-            <button class="delete" aria-label="close"></button>
-        </header>
-        <section class="modal-card-body">
-            <!-- {{form.as_p}} -->
-            <form action="." method="POST">
-                {% csrf_token %}
-                <div class="field">
-                    <label class="label">Company Name</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input name="company_name" id="id_company_name" class="input is-success" type="text" placeholder="Input First Name" value="">
-                        <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                  </span>
+</a>  -->
 
+<div class="container">
+
+    <div class="columns is-multiline is-desktop is-vcentered ">
+
+
+        <!-- <div class="column "> -->
+        <div class="column is-4 is-mobile ">
+            <div class="card" style="height: 200px;">
+                <div class="card-content">
+                    <div class="media">
                     </div>
-
-                </div>
-
-                <div class="field">
-                    <label class="label">Company CEO</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input name="company_ceo" id="id_company_ceo" class="input is-success" type="text" placeholder="Input Last Name" value="">
-                        <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                  </span>
+                    <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                        <span class="is-large icon is-vcentered">
+                <i class="fas fa-user-alt fa-5x"></i>
+               </span>
+                        <!-- <hr>
+                <a href="" class="button is-link is-outlined">Read More</a> -->
+                    </div>
+                    <div class="title is-4 has-text-centered">
+                        <hr> Company's Profile
                     </div>
                 </div>
 
-                <div class="field">
-                    <label class="label">About Company</label>
-                    <textarea name="company_about" id="id_company_about" class="textarea is-primary" placeholder="Primary textarea"></textarea>
-                </div>
+            </div>
+        </div>
 
+        <div class="column is-4 is-mobile ">
+            <div class="card" style="height: 200px;">
+                <div class="card-content">
+                    <div class="media">
+                    </div>
+                    <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                        <span class="is-large icon is-vcentered">
+                <i class="fas fa-briefcase fa-5x"></i>
 
-
-
-
-                <div id="file-js-example" class="file has-name">
-                    <label class="file-label">
-                      <input name="company_logo" id="id_company_logo" class="file-input" type="file" >
-                      <span class="file-cta">
-                        <span class="file-icon">
-                          <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                          Choose a file…
-                        </span>
-                      </span>
-                      <span class="file-name">
-                        No file uploaded
-                      </span>
-                    </label>
-                </div>
-
-                <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input name="company_email" id="id_company_email" class="input is-success" type="email" placeholder="Ex. abc@ab.com" value="">
-                        <span class="icon is-small is-left">
-                    <!-- <i class="fas fa-user"></i> -->
-                    <i class="fas fa-user-tag"></i>
-                  </span>
+               </span>
+                        <!-- <hr>
+                <a href="" class="button is-link is-outlined">Read More</a> -->
+                    </div>
+                    <div class="title is-4 has-text-centered">
+                        <hr> Jobs Posted
                     </div>
                 </div>
 
+            </div>
+        </div>
 
-
-                <div class="field">
-                    <label class="label">Tell :</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input value="" name="company_tel" id="id_company_tel" class="input is-success" type="text" placeholder="Input Last Name" value="">
-                        <span class="icon is-small is-left">
-                    <!-- <i class="fas fa-user"></i> -->
-                    <i class="fas fa-phone"></i>
-                  </span>
+        <div class="column is-4 is-mobile">
+            <div class="card" style="height: 200px;">
+                <div class="card-content">
+                    <div class="media">
+                    </div>
+                    <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                        <span class="is-large icon is-vcentered">
+                <i class="fas fa-file-alt fa-5x"></i>
+               </span>
+                        <!-- <hr>
+                <a href="" class="button is-link is-outlined">Read More</a> -->
+                    </div>
+                    <div class="title is-4 has-text-centered">
+                        <hr>Applications Received
                     </div>
                 </div>
 
-                <div class="field">
-                    <label class="label">Website</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input name="company_website" id="id_company_website" class="input is-success" type="text" placeholder="Input Last Name" value="">
-                        <span class="icon is-small is-left">
-                    <i class="fas fa-user-tag"></i>
-                  </span>
+            </div>
+        </div>
+
+        <div class="column is-4 is-mobile">
+            <div class="card" style="height: 200px;">
+                <div class="card-content">
+                    <div class="media">
                     </div>
-                </div>
-                <div class="field">
-                    <label class="label">Location Link :</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input name="company_location" id="id_company_location" class="input is-success" type="text" placeholder="Input Last Name" value="">
-                        <span class="icon is-small is-left">
-                    <i class="fas fa-user-tag"></i>
-                  </span>
+                    <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                        <span class="is-large icon is-vcentered">
+                <i class="fas fa-laptop-house fa-5x"></i>
+               </span>
+                        <!-- <hr>
+                <a href="" class="button is-link is-outlined">Read More</a> -->
+                    </div>
+                    <div class="title is-4 has-text-centered">
+                        <hr>Post New Job
                     </div>
                 </div>
 
-                <div class="field">
-                    <label class="label">Country</label>
-                    <p class="control has-icons-left">
-                        <span class="select">
-                            {% load countries %} {% get_countries as countries %}
-                        <select>
-                            {% for country in countries %}
-                            <option value="{{ country.code }}">{{ country.name }}</option>
-                        {% endfor %}
-                        </select>
-                      </span>
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-globe"></i>
-                      </span>
-                    </p>
-                </div>
+            </div>
+        </div>
 
-                <div class="field">
-                    <label class="label">City :</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input name="company_city" id="id_company_city" class="input is-success" type="text" placeholder="Input Last Name" value="">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-user-tag"></i>
-                          </span>
-                    </div>
-                </div>
-                <footer class="modal-card-foot">
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button class="button is-link">Submit</button>
-                        </div>
-                        <div class="control">
-                            <button class="cancel button is-link is-light">Cancel</button>
-                        </div>
-                    </div>
-                </footer>
 
-                <!-- <footer class="modal-card-foot">
-                    <button type="submit" class="button is-success">Save changes</button>
-                    <button class="button cancel">Cancel</button>
-                </footer> -->
-            </form>
-        </section>
+
+
+
+        <!-- </div> -->
     </div>
-
-
-
-
-
-
-
-</div>
 </div>
 {% else %}
+<!-- <i class="fas fa-user-alt"></i>
+<i class="fas fa-users"></i> -->
 <div class="container">
-    <a role="button" class="button is-primary is-large modal-button md-button" data-target="modal" aria-haspopup="true">
+    <!-- <a role="button" class="button is-primary is-large modal-button md-button" data-target="modal" aria-haspopup="true">
     Launch Job seeker Profile Form
-</a>
+</a>  -->
 
+
+    <div class="container">
+
+        <div class="columns is-multiline is-desktop is-vcentered ">
+
+
+            <!-- <div class="column "> -->
+            <div class="column is-4 is-mobile ">
+                <div class="card" style="height: 200px;">
+                    <div class="card-content">
+                        <div class="media">
+                        </div>
+                        <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                            <span class="is-large icon is-vcentered">
+                    <i class="fas fa-user-alt fa-5x"></i>
+                   </span>
+                            <!-- <hr>
+                    <a href="" class="button is-link is-outlined">Read More</a> -->
+                        </div>
+                        <div class="title is-4 has-text-centered">
+                            <hr> JobSeeker Profile
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="column is-4 is-mobile ">
+                <div class="card" style="height: 200px;">
+                    <div class="card-content">
+                        <div class="media">
+                        </div>
+                        <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                            <span class="is-large icon is-vcentered">
+                    <i class="fas fa-award fa-5x"></i>
+
+                   </span>
+                            <!-- <hr>
+                    <a href="" class="button is-link is-outlined">Read More</a> -->
+                        </div>
+                        <div class="title is-4 has-text-centered">
+                            <hr> Education
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="column is-4 is-mobile">
+                <div class="card" style="height: 200px;">
+                    <div class="card-content">
+                        <div class="media">
+                        </div>
+                        <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                            <span class="is-large icon is-vcentered">
+                    <i class="fas fa-briefcase fa-5x"></i>
+                   </span>
+                            <!-- <hr>
+                    <a href="" class="button is-link is-outlined">Read More</a> -->
+                        </div>
+                        <div class="title is-4 has-text-centered">
+                            <hr> Work <br> Experience
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="column is-4 is-mobile">
+                <div class="card" style="height: 200px;">
+                    <div class="card-content">
+                        <div class="media">
+                        </div>
+                        <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                            <span class="is-large icon is-vcentered">
+                    <i class="fas fa-laptop-house fa-5x"></i>
+                   </span>
+                            <!-- <hr>
+                    <a href="" class="button is-link is-outlined">Read More</a> -->
+                        </div>
+                        <div class="title is-4 has-text-centered">
+                            <hr> Jobs Applied
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="column is-4 is-mobile">
+                <div class="card" style="height: 200px;">
+                    <div class="card-content">
+                        <div class="media">
+                        </div>
+                        <div class="content " style="display:flex; position: relative; align-items: center; align-content: center; justify-content: center">
+                            <span class="is-large icon is-vcentered">
+                    <i class="fas fa-file-alt fa-5x"></i>
+                   </span>
+                            <!-- <hr>
+                    <a href="" class="button is-link is-outlined">Read More</a> -->
+                        </div>
+                        <div class="title is-4 has-text-centered">
+                            <hr> Cover Letter
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <!-- </div> -->
+        </div>
+    </div>
+    {% endif %}
 
 
     <div class="modal" id="modal">
@@ -310,7 +365,7 @@
                             <div class="select">
 
                                 <select name="gender" id="gender">
-                                {% for choice in form.gender %}
+                                {% for choice in jobseeker_form.gender %}
                           <!-- <option value="Male">Male</option>
                           <option value="Female">Female</option> -->
                           <button><option value="gender">{{choice}}</option></button>
@@ -338,7 +393,7 @@
     </div>
 
 </div>
-{% endif %}
+
 
 
 <!-- <button id="modal" class="button is-primary is-large modal-button md-button" data-target="modal" aria-haspopup="true">Launch example modal</button> -->
@@ -375,13 +430,5 @@
     });
 </script>
 
-<script>
-    const fileInput = document.querySelector('#file-js-example input[type=file]');
-    fileInput.onchange = () => {
-        if (fileInput.files.length > 0) {
-            const fileName = document.querySelector('#file-js-example .file-name');
-            fileName.textContent = fileInput.files[0].name;
-        }
-    }
-</script>
+
 {% endblock %}

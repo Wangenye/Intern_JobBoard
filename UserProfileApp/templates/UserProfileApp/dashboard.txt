@@ -22,3 +22,460 @@
 <h2>Not Yet</h2>
 {% endfor%} {% endif %} -->
 <!-- {% endblock %} -->
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} Modal {% endcomment %}
+
+<div class="modal" id="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title"> Details Form</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <!-- {{form.as_p}} -->
+            <form action="." method="POST">
+                {% csrf_token %}
+                <div class="field">
+                    <label class="label">Company Name</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input name="company_name" id="id_company_name" class="input is-success" type="text" placeholder="Input First Name" value="">
+                        <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label class="label">Company CEO</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input name="company_ceo" id="id_company_ceo" class="input is-success" type="text" placeholder="Input Last Name" value="">
+                        <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">About Company</label>
+                    <textarea name="company_about" id="id_company_about" class="textarea is-primary" placeholder="Primary textarea"></textarea>
+                </div>
+
+
+
+
+
+                <div id="file-js-example" class="file has-name">
+                    <label class="file-label">
+                      <input name="company_logo" id="id_company_logo" class="file-input" type="file" >
+                      <span class="file-cta">
+                        <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                          Choose a file…
+                        </span>
+                      </span>
+                      <span class="file-name">
+                        No file uploaded
+                      </span>
+                    </label>
+                </div>
+
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input name="company_email" id="id_company_email" class="input is-success" type="email" placeholder="Ex. abc@ab.com" value="">
+                        <span class="icon is-small is-left">
+                    <!-- <i class="fas fa-user"></i> -->
+                    <i class="fas fa-user-tag"></i>
+                  </span>
+                    </div>
+                </div>
+
+
+
+                <div class="field">
+                    <label class="label">Tell :</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input value="" name="company_tel" id="id_company_tel" class="input is-success" type="text" placeholder="Input Last Name" value="">
+                        <span class="icon is-small is-left">
+                    <!-- <i class="fas fa-user"></i> -->
+                    <i class="fas fa-phone"></i>
+                  </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Website</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input name="company_website" id="id_company_website" class="input is-success" type="text" placeholder="Input Last Name" value="">
+                        <span class="icon is-small is-left">
+                    <i class="fas fa-user-tag"></i>
+                  </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Location Link :</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input name="company_location" id="id_company_location" class="input is-success" type="text" placeholder="Input Last Name" value="">
+                        <span class="icon is-small is-left">
+                    <i class="fas fa-user-tag"></i>
+                  </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Country</label>
+                    <p class="control has-icons-left">
+                        <span class="select">
+                            {% load countries %} {% get_countries as countries %}
+                        <select>
+                            {% for country in countries %}
+                            <option value="{{ country.code }}">{{ country.name }}</option>
+                        {% endfor %}
+                        </select>
+                      </span>
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-globe"></i>
+                      </span>
+                    </p>
+                </div>
+
+                <div class="field">
+                    <label class="label">City :</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input name="company_city" id="id_company_city" class="input is-success" type="text" placeholder="Input Last Name" value="">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user-tag"></i>
+                          </span>
+                    </div>
+                </div>
+                <footer class="modal-card-foot">
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-link">Submit</button>
+                        </div>
+                        <div class="control">
+                            <button class="cancel button is-link is-light">Cancel</button>
+                        </div>
+                    </div>
+                </footer>
+
+                <!-- <footer class="modal-card-foot">
+                    <button type="submit" class="button is-success">Save changes</button>
+                    <button class="button cancel">Cancel</button>
+                </footer> -->
+            </form>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container p-5">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">Company Name</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_name" id="id_company_name" class="input is-success" type="text" placeholder="Input Company Name">
+                <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label class="label">Company CEO</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_ceo" id="id_company_ceo" class="input is-success" type="text" placeholder="Company's CEO">
+                <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">About Company</label>
+            <textarea name="company_about" id="id_company_about" class="textarea is-primary" placeholder="About"></textarea>
+        </div>
+
+
+
+
+
+        <div id="file-js-example" class="file has-name">
+            <label class="file-label">
+                  <input name="company_logo" id="id_company_logo" class="file-input" type="file" >
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Choose a file…
+                    </span>
+                  </span>
+                  <span class="file-name">
+                    No file uploaded
+                  </span>
+                </label>
+        </div>
+
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_email" id="id_company_email" class="input is-success" type="email" placeholder="Ex. abc@ab.com">
+                <span class="icon is-small is-left">
+                <!-- <i class="fas fa-user"></i> -->
+                <i class="fas fa-user-tag"></i>
+              </span>
+            </div>
+        </div>
+
+
+
+        <div class="field">
+            <label class="label">Tell :</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_tel" id="id_company_tel" class="input is-success" type="text" placeholder="Input Last Name">
+                <span class="icon is-small is-left">
+                <!-- <i class="fas fa-user"></i> -->
+                <i class="fas fa-phone"></i>
+              </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Website</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_website" id="id_company_website" class="input is-success" type="text" placeholder="Input Last Name">
+                <span class="icon is-small is-left">
+                <i class="fas fa-user-tag"></i>
+              </span>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Location Link :</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_location" id="id_company_location" class="input is-success" type="text" placeholder="Input Last Name">
+                <span class="icon is-small is-left">
+                <i class="fas fa-user-tag"></i>
+              </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Country</label>
+            <p class="control has-icons-left">
+                <span class="select">
+                        {% load countries %} {% get_countries as countries %}
+                    <select>
+                        {% for country in countries %}
+                        <option value="{{ country.code }}">{{ country.name }}</option>
+                    {% endfor %}
+                    </select>
+                  </span>
+                <span class="icon is-small is-left">
+                    <i class="fas fa-globe"></i>
+                  </span>
+            </p>
+        </div>
+
+        <div class="field">
+            <label class="label">City :</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_city" id="id_company_city" class="input is-success" type="text" placeholder="Input Last Name">
+                <span class="icon is-small is-left">
+                        <i class="fas fa-user-tag"></i>
+                      </span>
+            </div>
+        </div>
+        <footer class="modal-card-foot">
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-link">Submit</button>
+                </div>
+                <div class="control">
+                    <button class="cancel button is-link is-light">Cancel</button>
+                </div>
+            </div>
+        </footer>
+
+        <!-- <footer class="modal-card-foot">
+                <button type="submit" class="button is-success">Save changes</button>
+                <button class="button cancel">Cancel</button>
+            </footer> -->
+    </form>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+nnnnneenneneen
+
+<div class="container p-5">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">Company Name</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_name" id="id_company_name" class="input is-success" type="text" placeholder="Input Company Name">
+                <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label class="label">Company CEO</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_ceo" id="id_company_ceo" class="input is-success" type="text" placeholder="Company's CEO">
+                <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">About Company</label>
+            <textarea name="company_about" id="id_company_about" class="textarea is-primary" placeholder="About"></textarea>
+        </div>
+
+
+
+
+
+        <div id="file-js-example" class="file has-name">
+            <label class="file-label">
+                  <input name="company_logo" id="id_company_logo" class="file-input" type="file" >
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Choose a file…
+                    </span>
+                  </span>
+                  <span class="file-name">
+                    No file uploaded
+                  </span>
+                </label>
+        </div>
+
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_email" id="id_company_email" class="input is-success" type="email" placeholder="Ex. abc@ab.com">
+                <span class="icon is-small is-left">
+                <!-- <i class="fas fa-user"></i> -->
+                <i class="fas fa-user-tag"></i>
+              </span>
+            </div>
+        </div>
+
+
+
+        <div class="field">
+            <label class="label">Tell :</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_tel" id="id_company_tel" class="input is-success" type="text" placeholder="Input Last Name">
+                <span class="icon is-small is-left">
+                <!-- <i class="fas fa-user"></i> -->
+                <i class="fas fa-phone"></i>
+              </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Website</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_website" id="id_company_website" class="input is-success" type="text" placeholder="Input Last Name">
+                <span class="icon is-small is-left">
+                <i class="fas fa-user-tag"></i>
+              </span>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Location Link :</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_location" id="id_company_location" class="input is-success" type="text" placeholder="Input Last Name">
+                <span class="icon is-small is-left">
+                <i class="fas fa-user-tag"></i>
+              </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Country</label>
+            <p class="control has-icons-left">
+                <span class="select">
+                        {% load countries %} {% get_countries as countries %}
+                    <select>
+                        {% for country in countries %}
+                        <option value="{{ country.code }}">{{ country.name }}</option>
+                    {% endfor %}
+                    </select>
+                  </span>
+                <span class="icon is-small is-left">
+                    <i class="fas fa-globe"></i>
+                  </span>
+            </p>
+        </div>
+
+        <div class="field">
+            <label class="label">City :</label>
+            <div class="control has-icons-left has-icons-right">
+                <input name="company_city" id="id_company_city" class="input is-success" type="text" placeholder="Input Last Name">
+                <span class="icon is-small is-left">
+                        <i class="fas fa-user-tag"></i>
+                      </span>
+            </div>
+        </div>
+        <footer class="modal-card-foot">
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-link">Submit</button>
+                </div>
+                <div class="control">
+                    <button class="cancel button is-link is-light">Cancel</button>
+                </div>
+            </div>
+        </footer>
+
+
+    </form>
+
+</div>
